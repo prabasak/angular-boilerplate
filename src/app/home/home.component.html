@@ -1,3 +1,9 @@
+<style>
+.pagination /deep/ .ngx-pagination {
+  padding-left: 0 !important;
+}
+</style>
+
 <div class="container">
   <h1>This is home page</h1>
   <div class="row">
@@ -29,32 +35,27 @@
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Movie Title</th>
+            <th scope="col">Director Name</th>
+            <th scope="col">Title Year</th>
+            <th scope="col">Budget</th>
+            <th scope="col">Country</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
+          <tr
+            *ngFor="let data of configData | paginate: { itemsPerPage: count, currentPage: p }; let i = index"
+          >
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.movie_title }}</td>
+            <td>{{ data.director_name }}</td>
+            <td>{{ data.title_year }}</td>
+            <td>{{ data.budget }}</td>
+            <td>{{ data.country }}</td>
           </tr>
         </tbody>
       </table>
+      <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
     </div>
   </div>
 </div>
