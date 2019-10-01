@@ -1,61 +1,21 @@
 <style>
-.pagination /deep/ .ngx-pagination {
-  padding-left: 0 !important;
-}
+  .pagination /deep/ .ngx-pagination {
+    padding-left: 0 !important;
+  }
 </style>
 
 <div class="container">
   <h1>This is home page</h1>
   <div class="row">
     <div class="col-sm-3">
-      <div class="list-group">
-        <a href="#" class="list-group-item list-group-item-action active">
-          Cras justo odio
-        </a>
-        <a href="#" class="list-group-item list-group-item-action"
-          >Dapibus ac facilisis in</a
-        >
-        <a href="#" class="list-group-item list-group-item-action"
-          >Morbi leo risus</a
-        >
-        <a href="#" class="list-group-item list-group-item-action"
-          >Porta ac consectetur ac</a
-        >
-        <a
-          href="#"
-          class="list-group-item list-group-item-action disabled"
-          tabindex="-1"
-          aria-disabled="true"
-          >Vestibulum at eros</a
-        >
-      </div>
+      <app-list-group [propertyData]="propertyData"></app-list-group>
     </div>
-    <div class="col-sm">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Movie Title</th>
-            <th scope="col">Director Name</th>
-            <th scope="col">Title Year</th>
-            <th scope="col">Budget</th>
-            <th scope="col">Country</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            *ngFor="let data of configData | paginate: { itemsPerPage: count, currentPage: p }; let i = index"
-          >
-            <th scope="row">{{ data.id }}</th>
-            <td>{{ data.movie_title }}</td>
-            <td>{{ data.director_name }}</td>
-            <td>{{ data.title_year }}</td>
-            <td>{{ data.budget }}</td>
-            <td>{{ data.country }}</td>
-          </tr>
-        </tbody>
-      </table>
-      <pagination-controls class="pagination" (pageChange)="p = $event"></pagination-controls>
+    <div class="col-sm" *ngIf="configData">
+      <app-table [p]="p" [count]="count" [configData]="configData"></app-table>
+      <pagination-controls
+        class="pagination"
+        (pageChange)="p = $event"
+      ></pagination-controls>
     </div>
   </div>
 </div>

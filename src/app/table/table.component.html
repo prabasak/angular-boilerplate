@@ -1,1 +1,24 @@
-<p>table works!</p>
+<table class="table" *ngIf="configData">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Movie Title</th>
+      <th scope="col">Director Name</th>
+      <th scope="col">Title Year</th>
+      <th scope="col">Budget</th>
+      <th scope="col">Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let data of configData | paginate: { itemsPerPage: count, currentPage: p }; let i = index"
+    >
+      <th scope="row">{{ data.id }}</th>
+      <td>{{ data.movie_title }}</td>
+      <td>{{ data.director_name }}</td>
+      <td>{{ data.title_year }}</td>
+      <td>{{ data.budget }}</td>
+      <td>{{ data.country }}</td>
+    </tr>
+  </tbody>
+</table>

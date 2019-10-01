@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ConfigService } from './config.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ListGroupComponent } from './list-group/list-group.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     TableComponent,
     FeaturesComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    ListGroupComponent
   ],
   imports: [
     BrowserModule,
