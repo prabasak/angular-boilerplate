@@ -8,10 +8,10 @@
   <h1>This is home page</h1>
   <div class="row">
     <div class="col-sm-3">
-      <app-list-group [propertyData]="propertyData"></app-list-group>
+      <app-list-group [propertyData]="propertyData" (filteredData)="getFilteredData($event)"></app-list-group>
     </div>
     <div class="col-sm" *ngIf="configData">
-      <app-table [p]="p" [count]="count" [configData]="configData"></app-table>
+      <app-table [p]="p" [count]="count" [configData]="data"></app-table>
       <pagination-controls
         class="pagination"
         (pageChange)="p = $event"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ConfigService } from "./../config.service";
+import { JsonPipe } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -10,17 +11,18 @@ export class HomeComponent implements OnInit {
   p: number = 1;
   count: number = 10;
   configData: Array<object> = [];
-  response: Array<object> = [];
-  propertyData: Array<string> = [];
+  response: Array<any> = [];
+  propertyData: Array<string> = ["All"];
+  data: Array<any> = [];
 
   constructor(private configService: ConfigService) {}
 
   getData() {
     this.configService.getConfig().subscribe(resp => {
-      console.log(typeof resp);
       this.response = resp;
       this.response.map((data, index) => (data["id"] = index + 1));
       this.configData = this.response;
+      this.data = JSON.parse(JSON.stringify(resp));
 
       this.response.map(data => {
         if ("country" in data) {
@@ -34,6 +36,17 @@ export class HomeComponent implements OnInit {
             this.propertyData.push("Others");
         }
       });
+    });
+  }
+
+  getFilteredData(filterItem) {
+    if (filterItem === "All") {
+      console.log("all is clicked");
+      return this.data;}
+    this.data = this.configData.filter(data => {
+      // console.log(filterItem, data["country"]);
+      if (filterItem === "Others") return data["country"] === "";
+      else return data["country"] === filterItem.trim();
     });
   }
 

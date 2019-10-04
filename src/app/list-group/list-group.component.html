@@ -1,5 +1,10 @@
 <div class="list-group">
-  <a *ngFor="let data of propertyData; let i = index;" href="#" class="list-group-item list-group-item-action">
+  <a
+    *ngFor="let data of propertyData; let i = index"
+    href="javascript:void(0);"
+    class="list-group-item list-group-item-action"
+    (click)="filterData($event)"
+  >
     {{ data }}
   </a>
 </div>
